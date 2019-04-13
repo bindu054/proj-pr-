@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table align="center">
+<tr>
+    <th>IDNO</th>
+    <th>NAME</th>
+    <th>PRICE</th>
+    <th>QUANTITY</th>
+    <th>IMAGE</th>
+</tr>
+{% for x in itt %}
+    <tr>
+    <td>{{ x.Idno }}</td>
+    <td>{{ x.Name }}</td>
+    <td>{{ x.Price }}</td>
+    <td>{{ x.Quantity }}</td>
+    <td><img src="{{ x.Image.url }}"></td>
+    <td><a href="/select/?type={{ x.Idno }}">select</a> </td>
+    </tr>
+    {% endfor %}
+</body>
+</html>

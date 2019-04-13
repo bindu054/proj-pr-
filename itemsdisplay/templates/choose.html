@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+            th2{
+                padding: 30px;
+            }
+    </style>
+</head>
+<body>
+{% for x in iti %}
+<table align="center">
+<tr>
+    <th>IDNO</th>
+    <th>NAME</th>
+    <th>PRICE</th>
+    <th>QUANTITY</th>
+    <th>IMAGE</th>
+</tr>
+
+    <tr>
+    <td>{{ x.Idno }}</td>
+    <td>{{ x.Name }}</td>
+    <td>{{ x.Price }}</td>
+    <td>{{ x.Quantity }}</td>
+    <td><img src="{{ x.Image.url }}"></td>
+    <td><a href="/buy/?type={{ x.Idno }}">Buy</a></td>
+    </tr>
+{% endfor %}
+{% if type == 'buybuy' %}
+    <form action="/pay/?type={{ x.Idno }}">
+    {% csrf_token %}
+<table align="center">
+<tr>
+    <th>IDNO</th>
+    <th>NAME</th>
+    <th>PRICE</th>
+    <th>QUANTITY</th>
+    <th>IMAGE</th>
+    <th>TYPE OF PAYMENT</th>
+</tr>
+{% for x in iit %}
+<tr>
+    <td>{{ x.Idno }}</td>
+    <td>{{ x.Name }}</td>
+    <td>{{ x.Price }}</td>
+    <td>{{ x.Quantity }}</td>
+    <td><img src="{{ x.Image.url }}"></td>
+    <td><select name="way"><option value="debit card">Debit Card</option>
+                <option value="credit card">Credit card</option>
+                <option value="net banking">Net Banking</option></select></td>
+            <td><input type="hidden" value="{{ x.Idno }}" name="idno">
+{#            <input type="name" value="{{ reg.Name}}" name="idno">#}
+       <td> <input type="submit" value="pay"></td>
+</tr>{% endfor %}
+    {% endif %}
+    {% if type == 'pyp' %}
+<table align="center">
+<tr>
+    <th>IDNO</th>
+    <th>NAME</th>
+    <th>PRICE</th>
+    <th>QUANTITY</th>
+    <th>IMAGE</th>
+    <th>TIME</th>
+    <th>TYPE OF PAYMENT</th>
+</tr>
+{#        <h1> This is Display Page</h1>#}
+{% for x in imt%}
+    <tr>
+    <td>{{ x.Idno }}</td>
+    <td>{{ x.Name }}</td>
+    <td>{{ x.Price }}</td>
+    <td>{{ x.Quantity }}</td>
+    <td><img src="{{ x.Image.url }}"></td>
+    <td>{{ da.time }}</td>
+    <td>{{ wa }}</td>
+    </tr>
+    {% endfor %}
+    {% endif %}
+
+    </table>
+    </form>
+</table>
+</table>
+</body>
+</html>
